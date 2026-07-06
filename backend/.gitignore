@@ -1,0 +1,21 @@
+# Maven
+target/
+
+# IDE
+.idea/
+.vscode/
+nbproject/private/
+
+# Logs
+*.log
+
+# Arquivos compilados
+*.class
+*.jar
+
+# Uploads
+uploads/
+
+# Sistema
+Thumbs.db
+Desktop.ini

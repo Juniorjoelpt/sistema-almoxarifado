@@ -1,0 +1,203 @@
+body{
+
+    margin:0;
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:#f5f6fa;
+
+}
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    display:flex;
+
+    z-index: 1000;
+
+    flex-direction:column;
+
+    background:linear-gradient(
+        180deg,
+        #07142f,
+        #02081d
+    );
+
+    color:#fff;
+
+}
+
+.sidebar-header{
+
+    padding:25px 20px;
+
+    text-align:center;
+
+    flex-shrink:0;
+
+}
+
+.sidebar-logo{
+
+    width:170px;
+
+    display:block;
+
+    margin:auto;
+
+}
+
+.sidebar-menu{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding-bottom:15px;
+
+}
+
+.sidebar-menu::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.sidebar-menu::-webkit-scrollbar-track{
+
+    background:#111d43;
+
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb{
+
+    background:#5167b4;
+
+    border-radius:20px;
+
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover{
+
+    background:#6f84ce;
+
+}
+
+.sidebar-footer{
+
+    flex-shrink:0;
+
+    padding:15px;
+
+    border-top:1px solid rgba(200,255,255,.08);
+
+    text-align:center;
+
+}
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.topbar{
+
+    position:fixed;
+
+    left:260px;
+
+    top:0;
+
+    right:0;
+
+    height:75px;
+
+    background:#fff;
+
+    border-bottom:1px solid #e5e7eb;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+     z-index: 999;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+}
+
+.app-content{
+
+    margin-left:260px;
+
+    margin-top:75px;
+
+    padding:30px;
+
+    min-height:calc(100vh - 75px);
+
+    background:
+        url("/Images/ms-logo.png") center center no-repeat,
+        #f5f6fa;
+
+    background-size:550px;
+
+}
+.app-content{
+
+    background-blend-mode:soft-light;
+
+}
+.app-content{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+.app-content::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:url("/Images/ms-logo.png") center center no-repeat;
+
+    background-size:550px;
+
+    opacity:.04;
+
+    transform:rotate(-18deg);
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+.main-content{
+
+    position:relative;
+
+    z-index:1;
+
+}

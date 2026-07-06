@@ -1,0 +1,119 @@
+package br.com.almoxarifado.service;
+
+import br.com.almoxarifado.entity.Prefeitura;
+import br.com.almoxarifado.repository.PrefeituraRepository;
+import java.io.IOException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+@Service
+public class PrefeituraService {
+
+    private final PrefeituraRepository repository;
+    private final LogoService logoService;
+
+  
+    public PrefeituraService(
+        PrefeituraRepository repository,
+        LogoService logoService) {
+
+    this.repository = repository;
+    this.logoService = logoService;
+}
+
+    public Prefeitura salvar(Prefeitura prefeitura) {
+        
+        
+        if (prefeitura.getCnpj() == null
+        || prefeitura.getCnpj().isBlank()) {
+
+    throw new RuntimeException(
+            "CNPJ obrigatório");
+}
+
+    repository.findByCnpj(prefeitura.getCnpj())
+            .ifPresent(p -> {
+                throw new RuntimeException(
+                        "Já existe uma prefeitura com este CNPJ");
+            });
+
+    if (prefeitura.getAtivo() == null) {
+        prefeitura.setAtivo(true);
+    }
+
+    return repository.save(prefeitura);
+}
+    
+    public List<Prefeitura> listarTodas() {
+    return repository.findAll();
+}
+
+    public Prefeitura buscar(Long id) {
+
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Prefeitura não encontrada"));
+    }
+
+    public Prefeitura atualizar(
+        Long id,
+        Prefeitura prefeitura) {
+
+    Prefeitura existente = buscar(id);
+
+    repository.findByCnpj(prefeitura.getCnpj())
+        .ifPresent(p -> {
+
+            if (!p.getId().equals(id)) {
+
+                throw new RuntimeException(
+                        "Já existe uma prefeitura com este CNPJ");
+            }
+        });
+
+existente.setNome(prefeitura.getNome());
+existente.setCnpj(prefeitura.getCnpj());
+existente.setCidade(prefeitura.getCidade());
+existente.setEstado(prefeitura.getEstado());
+existente.setAtivo(prefeitura.getAtivo());
+
+    return repository.save(existente);
+}
+
+    public void excluir(Long id) {
+
+    Prefeitura prefeitura = buscar(id);
+
+    prefeitura.setAtivo(false);
+
+    repository.save(prefeitura);
+}
+    @Transactional
+public Prefeitura uploadLogo(
+        Long id,
+        MultipartFile arquivo)
+        throws IOException {
+
+    Prefeitura prefeitura = buscar(id);
+
+    if (!arquivo.getContentType()
+            .equals("image/png")) {
+
+        throw new RuntimeException(
+                "Apenas PNG é permitido.");
+
+    }
+
+    String logo =
+            logoService.salvar(arquivo);
+
+    prefeitura.setLogo(logo);
+
+    return repository.save(prefeitura);
+
+}
+}
