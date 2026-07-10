@@ -1,0 +1,78 @@
+
+version: "3.9"
+
+services:
+
+  mysql:
+    image: mysql:8.4
+    container_name: almoxarifado_mysql
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: almoxarifado
+      MYSQL_USER: almoxarifado
+      MYSQL_PASSWORD: almox123
+
+    command: --default-authentication-plugin=mysql_native_password
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    ports:
+      - "3306:3306"
+
+    networks:
+      - almox-network
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: almoxarifado_backend
+
+    restart: always
+
+    depends_on:
+      - mysql
+
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:mysql://mysql:3306/almoxarifado?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo
+      DB_USER: almoxarifado
+      DB_PASSWORD: almox123
+
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+    ports:
+      - "8080:8080"
+
+    networks:
+      - almox-network
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: almoxarifado_frontend
+
+    restart: always
+
+    depends_on:
+      - backend
+
+    ports:
+      - "80:80"
+
+    networks:
+      - almox-network
+
+volumes:
+  mysql_data:
+
+networks:
+  almox-network:
+    driver: bridge
+
