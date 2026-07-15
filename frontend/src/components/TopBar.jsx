@@ -129,6 +129,12 @@ function trocarPrefeitura(e) {
     window.location.reload();
 
 }
+console.log(prefeituraAtual);
+console.log(prefeituraAtual?.logo);
+console.log(import.meta.env.VITE_API_URL);
+console.log(
+    `${import.meta.env.VITE_API_URL}${prefeituraAtual?.logo}`
+);
 
     return(
 
@@ -178,7 +184,7 @@ function trocarPrefeitura(e) {
     {prefeituraAtual?.logo && (
 
         <img
-            src={`http://localhost:8080${prefeituraAtual.logo}`}
+            src={`${import.meta.env.VITE_API_URL}${prefeituraAtual.logo}`}
             alt="Logo"
             style={{
                 width: "45px",

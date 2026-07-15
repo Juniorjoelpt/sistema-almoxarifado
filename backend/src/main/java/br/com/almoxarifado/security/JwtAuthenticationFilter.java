@@ -39,6 +39,14 @@ protected void doFilterInternal(
         FilterChain filterChain)
         throws ServletException, IOException {
 
+	System.out.println(
+    ">>> " +
+    request.getMethod() +
+    " " +
+    request.getRequestURI()
+		);
+
+
     String auth =
             request.getHeader("Authorization");
 
