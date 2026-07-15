@@ -1,17 +1,26 @@
-\# MS Almoxarife
+<p align="center">
 
+<img src="docs/imagens/logo.png" width="180">
 
+</p>
 
-Sistema Inteligente para Gestão de Almoxarifado Público.
+<h1 align="center">
 
+MS Almoxarife
 
+</h1>
 
-Desenvolvido pela \*\*MS Soluções Inteligentes\*\*.
+<p align="center">
 
+Sistema Inteligente de Gestão de Almoxarifado Público
 
+</p>
 
-\---
+<p align="center">
 
+Desenvolvido pela <b>MS Soluções Inteligentes</b>
+
+</p>
 
 
 \# Sobre o projeto
@@ -74,60 +83,44 @@ Foi projetado para atender Prefeituras, Câmaras Municipais, Autarquias e demais
 
 
 
-\# Tecnologias
+---
 
+## Tecnologias
 
+![Java](https://img.shields.io/badge/Java-21-red)
 
-\## Backend
+![Spring](https://img.shields.io/badge/Spring_Boot-3-green)
 
+![React](https://img.shields.io/badge/React-19-blue)
 
+![Docker](https://img.shields.io/badge/Docker-✓-blue)
 
-\- Java 21
+![MySQL](https://img.shields.io/badge/MySQL-8-orange)
 
-\- Spring Boot
+---
+# Telas do Sistema
 
-\- Spring Security
+## Login
 
-\- JWT
+![](docs/imagens/login.png)
 
-\- Hibernate
+---
 
-\- MySQL
+## Dashboard
 
+![](docs/imagens/dashboard.png)
 
+---
 
-\## Frontend
+## Produtos
 
+![](docs/imagens/produtos.png)
 
+---
 
-\- React
+## Movimentações
 
-\- Vite
-
-\- Bootstrap
-
-\- Chart.js
-
-\- React Icons
-
-
-
-\## Infraestrutura
-
-
-
-\- Docker
-
-\- Docker Compose
-
-\- Caddy
-
-\- Nginx
-
-
-
-\---
-
+![](docs/imagens/movimentacoes.png)
 
 
 \# Estrutura
