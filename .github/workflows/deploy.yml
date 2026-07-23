@@ -1,0 +1,46 @@
+name: Deploy MS Almoxarife
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Executar deploy via SSH
+
+        uses: appleboy/ssh-action@v1.2.0
+
+        with:
+
+          host: ${{ secrets.SERVER_HOST }}
+
+          username: ${{ secrets.SERVER_USER }}
+
+          key: ${{ secrets.SERVER_SSH_KEY }}
+
+          script: |
+
+            cd /opt/almoxarifado/sistema-almoxarifado
+
+            echo "Atualizando código..."
+
+            git fetch origin
+
+            git reset --hard origin/main
+
+            echo "Recriando containers..."
+
+            docker compose up -d --build
+
+            echo "Limpando imagens antigas..."
+
+            docker image prune -f
+
+            echo "Deploy concluído!"
