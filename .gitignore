@@ -1,0 +1,21 @@
+# Arquivos de ambiente
+.env
+
+# Arquivos de configuração locais
+frontend/.env.production
+
+# Backups
+*.sql
+*.tar.gz
+backups/
+
+# Arquivos temporários
+*.save
+
+# Imagens de teste
+teste.png
+
+# Certificados (caso existam)
+*.pem
+*.key
+*.crt

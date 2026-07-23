@@ -1,5 +1,5 @@
 package br.com.almoxarifado.config;
-
+import org.springframework.security.config.Customizer;
 import br.com.almoxarifado.security.JwtAuthenticationFilter;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
@@ -44,46 +44,13 @@ public class SecurityConfig {
 
         return config.getAuthenticationManager();
     }
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-
-        CorsConfiguration configuration =
-            new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of(
-            "http://89.117.32.240"
-                    ));
-
-        configuration.setAllowedMethods(
-            List.of(
-                    "GET",
-                    "POST",
-                    "PUT",
-                    "DELETE",
-                    "PATCH",
-                    "OPTIONS"));
-
-        configuration.setAllowedHeaders(
-            List.of("*"));
-
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source =
-            new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration(
-            "/**",
-            configuration);
-
-    return source;
-}
 
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
 
         http
-            .cors(cors -> {})
+            .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
 
             .sessionManagement(session ->

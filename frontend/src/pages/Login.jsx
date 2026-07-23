@@ -1,4 +1,4 @@
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../services/api";
 import "./Login.css";
@@ -14,6 +14,7 @@ function Login() {
     const [username, setUsername] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
+    const navigate = useNavigate();
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [carregando, setCarregando] = useState(false);
     const [usuarioFocus, setUsuarioFocus] = useState(false);
@@ -40,7 +41,7 @@ function Login() {
             localStorage.setItem("username", response.data.username);
             localStorage.setItem("role", response.data.role);
 
-            window.location.href = "/";
+            navigate("/dashboard", { replace: true });
 
         } catch (err) {
 

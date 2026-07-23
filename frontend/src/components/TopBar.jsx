@@ -129,6 +129,12 @@ function trocarPrefeitura(e) {
     window.location.reload();
 
 }
+console.log(prefeituraAtual);
+console.log(prefeituraAtual?.logo);
+console.log(import.meta.env.VITE_API_URL);
+console.log(
+    `${import.meta.env.VITE_API_URL}${prefeituraAtual?.logo}`
+);
 
     return(
 
