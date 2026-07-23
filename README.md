@@ -7,7 +7,7 @@ MS Almoxarife
 </h1>
 
 <p align="center">
-Sistema Inteligente de Gestão de Almoxarifado Público
+Sistema Inteligente de Gestão de Almoxarifado Público MS
 </p>
 
 <p align="center">
